@@ -112,6 +112,11 @@
                 text-align: center;
                 background: white;
 
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+
                 > figcaption {
                     font: 500 75% var(--font-sans);
                     background: var(--color-neutral-95);
@@ -152,13 +157,13 @@
         </header>
 
         <main>
-            <h2>Proposition: [STATE PROPOSITION]</h2>
+            <h2>Proposition: The NYPD’s civilian complaint system holds officers accountable.</h2>
 
             <section>
                 <h3>FOR the Proposition</h3>
 
                 <figure>
-                    <img src="IMAGE_FILENAME" alt="" />
+                    <img src="images/for-proposition.png" alt="" />
                     <figcaption>BRIEF CAPTION HERE.</figcaption>
                 </figure>
 
@@ -175,16 +180,41 @@
                 <h3>AGAINST the Proposition</h3>
 
                 <figure>
-                    <img src="IMAGE_FILENAME" alt="" />
-                    <figcaption>BRIEF CAPTION HERE.</figcaption>
+                    <img src="images/against-proposition.png" alt="Stacked bar chart of CCRB case outcomes by FADO allegation type, 2000-2009. Force complaints have the lowest substantiation rate at 8.8%." />
+                    <figcaption>Case outcomes by FADO allegation type for complaints received 2000–2009. Force allegations have the lowest substantiation rate (8.8%), with 91.2% of outcomes grouped as exonerated, unfounded, or unsubstantiated.</figcaption>
                 </figure>
 
                 <p>Design Decisions and Rationale:</p>
 
                 <ul>
-                    <li>RATIONALE_1</li>
-                    <li>RATIONALE_2</li>
-                    <li>RATIONALE_3</li>
+                    <li>
+                        <strong>Decision 1: Grouping "Exonerated," "Unfounded," and "Unsubstantiated" into a Single Monolithic Baseline</strong>
+                        <ul>
+                            <li>Deception Score: -1.0 (Moderately Deceptive)</li>
+                            <li>Rationale: I collapsed distinctly different legal and investigative outcomes ("Exonerated" meaning the act occurred but was lawful, "Unfounded" meaning the act did not occur, and "Unsubstantiated" meaning evidence was insufficient) into a single overarching gray bar labeled "Exonerated, Unfounded, or Unsubstantiated". This persuades the viewer that all non-substantiated cases represent a failure to hold officers accountable, erasing administrative nuances where officers legitimately followed protocol. Showing the full multi-category breakdown was considered, but it diluted the visual impact by splitting the non-accountability segment across three smaller bars; grouping them created a massive gray baseline reaching up to 91.2%, making systemic impunity appear virtually universal.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Decision 2: Temporal Bounding to the 2000–2009 Window</strong>
+                        <ul>
+                            <li>Deception Score: -0.5 (Slightly Deceptive)</li>
+                            <li>Rationale: I filtered the dataset strictly to complaints received between 2000 and 2009 rather than displaying the complete 1985–2020 record. This decision makes the graphic significantly more persuasive for the anti-proposition side because the Force substantiation rate plunges from the multi-decade average of 12.8% down to 8.8%, emphasizing systemic failure during a pivotal decade of aggressive policing. Leaving the entire timeline unconstrained was considered, but the broader dataset included decades with higher overall substantiation figures that blunted the critique; bounding to 2000–2009 produced an empirical minimum while remaining factually defensible under the subtitle.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Decision 3: Asymmetric Color Hierarchy and Saliency Encoding</strong>
+                        <ul>
+                            <li>Deception Score: 0.5 (Slightly Earnest)</li>
+                            <li>Rationale: I mapped the "Substantiated" outcome to an alert, saturated crimson red while encoding the non-substantiated outcomes in a muted, desaturated light gray. This visually prioritizes the red bars as the primary object of scrutiny, naturally directing the viewer's eye to how small they are relative to the expansive gray mass. Using a standard neutral categorical palette (such as blue versus orange) was tested, but it treated both outcomes as equally normative; the red-versus-gray contrast immediately frames substantiation as the missing, deficient element of the disciplinary system.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Decision 4: Normative Framing in Title and Subtitle Typography</strong>
+                        <ul>
+                            <li>Deception Score: -1.0 (Moderately Deceptive)</li>
+                            <li>Rationale: Rather than using a descriptive label (such as "Distribution of Allegation Outcomes by FADO Category"), I framed the chart with an editorialized headline in dark red: "Where Complaints Matter Most, Findings Are Rarest: Force Allegations Expose a System Lacking Accountability". This instructs the viewer how to interpret the data before they read the numerical values, defining a low substantiation rate as proof of broken accountability rather than a reflection of unproven or baseless complaints. A neutral title was considered, but it failed to satisfy the persuasive stance required by the anti-proposition deliverable.</li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
 
