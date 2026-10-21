@@ -159,22 +159,72 @@
         <main>
             <h2>Proposition: The NYPD’s civilian complaint system holds officers accountable.</h2>
 
+        
             <section>
-                <h3>FOR the Proposition</h3>
+    <h3>FOR the Proposition</h3>
 
-                <figure>
-                    <img src="images/for-proposition.png" alt="" />
-                    <figcaption>BRIEF CAPTION HERE.</figcaption>
-                </figure>
+    <figure>
+        <img src="viz2.png" alt="Line chart of the percentage of allegations substantiated by year received, 2007-2019, rising from 14.2% in 2007 to 35.1% in 2015." />
+        <figcaption>Percentage of allegations substantiated by year the complaint was received, 2007–2019. The rate rises from 14.2% in 2007 to 35.1% in 2015 and stays above 25% in every year since. 2019 data may be incomplete because of unclosed cases.</figcaption>
+    </figure>
 
-                <p>Design Decisions and Rationale:</p>
+    <p>Design Decisions and Rationale:</p>
 
-                <ul>
-                    <li>RATIONALE_1</li>
-                    <li>RATIONALE_2</li>
-                    <li>RATIONALE_3</li>
-                </ul>
-            </section>
+    <ul>
+        <li>
+            <strong>Decision 1: Starting the Timeline at the 2007 Low and Omitting Earlier Years</strong>
+            <ul>
+                <li>Deception Score: -1.5 (Deceptive)</li>
+                <li>Rationale: I limited the chart to 2007–2019, which begins at the lowest point since 1995 (14.2%). In most years from 1995 to 2004 the rate was already about 27–31%, so the rise is largely a recovery from a trough, not a new trend. Starting at the low point makes the improvement look much bigger and supports the claim that accountability is growing. I considered showing 1995–2019, but the earlier high rates made the story look flat or declining, which weakened the pro argument.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Decision 2: Zoomed-In Y-Axis Starting at 10%</strong>
+            <ul>
+                <li>Deception Score: -1.0 (Moderately Deceptive)</li>
+                <li>Rationale: I started the y-axis at 10% instead of 0% and capped it just above the maximum. This makes the climb from 14% to 35% look steeper while still looking like a normal chart, since the axis is labeled and not extremely truncated. I considered a 0–100% axis, but it flattened the line and made the increase hard to see.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Decision 3: Orange Highlights and Headline Framing</strong>
+            <ul>
+                <li>Deception Score: -0.5 (Slightly Deceptive)</li>
+                <li>Rationale: I marked 2007 and 2015 with large orange dots and labels, and titled the chart "Findings Against Officers More Than Doubled Since 2007." The color and title direct the eye to the two most favorable points, so the drop after 2015 (to 25.3% in 2017) gets less attention. The claim is accurate, but the emphasis is selective. I considered a neutral title, but it didn't deliver the persuasive stance required for the pro side.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Decision 4: Accurate Calculation, Labeled Axes, and a Source Line</strong>
+            <ul>
+                <li>Deception Score: +1.0 (Earnest)</li>
+                <li>Rationale: I calculated the percentage of allegations that were substantiated for each year the complaint was received, and I labeled both axes and cited ProPublica as the source. The numbers are correct and a reader can check them. I also considered the complaint-level rate (17.5% in 2007 to 49.9% in 2015), which also more than doubles. I kept the allegation-level rate because the complaint-level line climbs to 54% in 2019, a year that is incomplete because of unclosed cases, so that endpoint is harder to defend.</li>            </ul>
+        </li>
+    </ul>
+
+    <h4>Data transformation</h4>
+    <p>We collapsed the allegation-level file into one row per complaint with a groupby on <code>complaint_id</code> and a calculated flag, "any substantiated allegation." Overall, 24.9% of allegations are substantiated, but 32.0% of complaints contain at least one substantiated allegation, a 7-point swing from the denominator alone. Viz 2 uses the allegation-level column.</p>
+
+    <table style="border-collapse:collapse; margin-bottom:1em;" border="1" cellpadding="6">
+        <thead>
+            <tr><th>Year</th><th>Allegation-level</th><th>Complaint-level</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>2007</td><td>14.2%</td><td>17.5%</td></tr>
+            <tr><td>2008</td><td>15.6%</td><td>18.7%</td></tr>
+            <tr><td>2009</td><td>18.6%</td><td>23.0%</td></tr>
+            <tr><td>2010</td><td>17.5%</td><td>21.0%</td></tr>
+            <tr><td>2011</td><td>23.1%</td><td>29.7%</td></tr>
+            <tr><td>2012</td><td>25.3%</td><td>32.3%</td></tr>
+            <tr><td>2013</td><td>25.8%</td><td>34.2%</td></tr>
+            <tr><td>2014</td><td>27.8%</td><td>38.2%</td></tr>
+            <tr><td>2015</td><td>35.1%</td><td>49.9%</td></tr>
+            <tr><td>2016</td><td>31.9%</td><td>43.5%</td></tr>
+            <tr><td>2017</td><td>25.3%</td><td>40.1%</td></tr>
+            <tr><td>2018</td><td>28.4%</td><td>46.8%</td></tr>
+            <tr><td>2019</td><td>30.9%</td><td>54.1%</td></tr>
+            <tr><td><strong>All years</strong></td><td><strong>24.9%</strong></td><td><strong>32.0%</strong></td></tr>
+        </tbody>
+    </table>
+</section>
 
             <section>
                 <h3>AGAINST the Proposition</h3>
