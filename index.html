@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Project 2 Report</title>
         <style>
             :root {
@@ -143,6 +145,131 @@
                     }
                 }
             }
+
+            /* Pure-CSS chart reveal */
+
+            .reveal {
+                margin-block: 1em 2em;
+            }
+
+            .reveal-toggle {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+
+            .reveal-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45em;
+                min-height: 2.6em;
+                padding: 0.55em 0.9em;
+                border: 1px solid var(--color-neutral-60);
+                border-radius: 999px;
+                color: var(--color-neutral-20);
+                background: var(--color-neutral-95);
+                font-weight: 650;
+                cursor: pointer;
+                user-select: none;
+                transition: background 150ms ease, border-color 150ms ease,
+                    transform 150ms ease;
+            }
+
+            .reveal-button::before {
+                content: "◐";
+                color: #a61b1b;
+                font-size: 1.2em;
+                line-height: 1;
+            }
+
+            .reveal-button:hover {
+                background: white;
+                border-color: var(--color-neutral-40);
+                transform: translateY(-1px);
+            }
+
+            .reveal-toggle:focus-visible + .reveal-button {
+                outline: 3px solid color-mix(in srgb, #3973a6 45%, transparent);
+                outline-offset: 3px;
+            }
+
+            .reveal-button .show-persuasive,
+            .reveal-toggle:checked + .reveal-button .show-honest,
+            .reveal .honest-chart {
+                display: none;
+            }
+
+            .reveal-toggle:checked + .reveal-button .show-persuasive,
+            .reveal-toggle:checked ~ .honest-chart {
+                display: block;
+            }
+
+            .reveal-toggle:checked ~ .persuasive-chart {
+                display: none;
+            }
+
+            .reveal-note {
+                margin: 0.65em 0 0;
+                color: var(--color-neutral-40);
+                font-size: 0.85rem;
+            }
+
+            .reveal figcaption {
+                counter-increment: none;
+                color: var(--color-neutral-30);
+            }
+
+            .reveal figcaption::before {
+                content: none;
+            }
+
+            .report-intro {
+                color: var(--color-neutral-30);
+            }
+
+            table {
+                max-width: 100%;
+            }
+
+            th {
+                text-align: left;
+                background: var(--color-neutral-95);
+            }
+
+            pre {
+                overflow-x: auto;
+                padding: 0.8rem;
+                background: var(--color-neutral-95);
+                border: 1px solid var(--color-neutral-80);
+                border-radius: 0.35rem;
+            }
+
+            @media (max-width: 50rem) {
+                html {
+                    max-width: 100%;
+                }
+
+                body {
+                    margin: 0;
+                }
+
+                main {
+                    border-radius: 0;
+                    padding-inline: 1rem;
+                }
+
+                table {
+                    display: block;
+                    overflow-x: auto;
+                    white-space: nowrap;
+                }
+            }
         </style>
     </head>
 
@@ -153,116 +280,192 @@
                 Persuasive or Deceptive Visualization?
             </h1>
 
-            <p><strong>Your Name</strong> — <em>Your UCSD Email Address</em></p>
+            <p>
+                <strong>Anh Tran</strong> — <em>nnt003@ucsd.edu</em><br />
+                <strong>Hannah Tran</strong> — <em>hat010@ucsd.edu</em><br />
+                <strong>Patrick Wu</strong> — <em>pqwu@ucsd.edu</em><br />
+                <strong>Yuki Saeli</strong> — <em>ssaeli@ucsd.edu</em>
+            </p>
         </header>
 
         <main>
             <h2>Proposition: The NYPD’s civilian complaint system holds officers accountable.</h2>
 
-        
-            <section>
-    <h3>FOR the Proposition</h3>
-
-    <figure>
-        <img src="images/viz2.png" alt="Line chart of the percentage of allegations substantiated by year received, 2007-2019, rising from 14.2% in 2007 to 35.1% in 2015." />
-        <figcaption>Percentage of allegations substantiated by year the complaint was received, 2007–2019. The rate rises from 14.2% in 2007 to 35.1% in 2015 and stays above 25% in every year since. 2019 data may be incomplete because of unclosed cases.</figcaption>
-    </figure>
-
-    <p>Design Decisions and Rationale:</p>
-
-    <ul>
-        <li>
-            <strong>Decision 1: Starting the Timeline at the 2007 Low and Omitting Earlier Years</strong>
-            <ul>
-                <li>Deception Score: -1.5 (Deceptive)</li>
-                <li>Rationale: I limited the chart to 2007–2019, which begins at the lowest point since 1995 (14.2%). In most years from 1995 to 2004 the rate was already about 27–31%, so the rise is largely a recovery from a trough, not a new trend. Starting at the low point makes the improvement look much bigger and supports the claim that accountability is growing. I considered showing 1995–2019, but the earlier high rates made the story look flat or declining, which weakened the pro argument.</li>
-            </ul>
-        </li>
-        <li>
-            <strong>Decision 2: Zoomed-In Y-Axis Starting at 10%</strong>
-            <ul>
-                <li>Deception Score: -1.0 (Moderately Deceptive)</li>
-                <li>Rationale: I started the y-axis at 10% instead of 0% and capped it just above the maximum. This makes the climb from 14% to 35% look steeper while still looking like a normal chart, since the axis is labeled and not extremely truncated. I considered a 0–100% axis, but it flattened the line and made the increase hard to see.</li>
-            </ul>
-        </li>
-        <li>
-            <strong>Decision 3: Orange Highlights and Headline Framing</strong>
-            <ul>
-                <li>Deception Score: -0.5 (Slightly Deceptive)</li>
-                <li>Rationale: I marked 2007 and 2015 with large orange dots and labels, and titled the chart "Findings Against Officers More Than Doubled Since 2007." The color and title direct the eye to the two most favorable points, so the drop after 2015 (to 25.3% in 2017) gets less attention. The claim is accurate, but the emphasis is selective. I considered a neutral title, but it didn't deliver the persuasive stance required for the pro side.</li>
-            </ul>
-        </li>
-        <li>
-            <strong>Decision 4: Accurate Calculation, Labeled Axes, and a Source Line</strong>
-            <ul>
-                <li>Deception Score: +1.0 (Earnest)</li>
-                <li>Rationale: I calculated the percentage of allegations that were substantiated for each year the complaint was received, and I labeled both axes and cited ProPublica as the source. The numbers are correct and a reader can check them. I also considered the complaint-level rate (17.5% in 2007 to 49.9% in 2015), which also more than doubles. I kept the allegation-level rate because the complaint-level line climbs to 54% in 2019, a year that is incomplete because of unclosed cases, so that endpoint is harder to defend.</li>            </ul>
-        </li>
-    </ul>
-
-    <h4>Data transformation</h4>
-    <p>We collapsed the allegation-level file into one row per complaint with a groupby on <code>complaint_id</code> and a calculated flag, "any substantiated allegation." Overall, 24.9% of allegations are substantiated, but 32.0% of complaints contain at least one substantiated allegation, a 7-point swing from the denominator alone. Viz 2 uses the allegation-level column.</p>
-
-    <table style="border-collapse:collapse; margin-bottom:1em;" border="1" cellpadding="6">
-        <thead>
-            <tr><th>Year</th><th>Allegation-level</th><th>Complaint-level</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>2007</td><td>14.2%</td><td>17.5%</td></tr>
-            <tr><td>2008</td><td>15.6%</td><td>18.7%</td></tr>
-            <tr><td>2009</td><td>18.6%</td><td>23.0%</td></tr>
-            <tr><td>2010</td><td>17.5%</td><td>21.0%</td></tr>
-            <tr><td>2011</td><td>23.1%</td><td>29.7%</td></tr>
-            <tr><td>2012</td><td>25.3%</td><td>32.3%</td></tr>
-            <tr><td>2013</td><td>25.8%</td><td>34.2%</td></tr>
-            <tr><td>2014</td><td>27.8%</td><td>38.2%</td></tr>
-            <tr><td>2015</td><td>35.1%</td><td>49.9%</td></tr>
-            <tr><td>2016</td><td>31.9%</td><td>43.5%</td></tr>
-            <tr><td>2017</td><td>25.3%</td><td>40.1%</td></tr>
-            <tr><td>2018</td><td>28.4%</td><td>46.8%</td></tr>
-            <tr><td>2019</td><td>30.9%</td><td>54.1%</td></tr>
-            <tr><td><strong>All years</strong></td><td><strong>24.9%</strong></td><td><strong>32.0%</strong></td></tr>
-        </tbody>
-    </table>
-</section>
+            <p class="report-intro">Data: ProPublica’s Civilian Complaints Against New York City Police Officers. Each chart below has a “Show what we left out” button that swaps our persuasive chart for a version of the same data with the omitted years and outcomes restored.</p>
 
             <section>
-                <h3>AGAINST the Proposition</h3>
+                <h3>FOR the Proposition</h3>
 
-                <figure>
-                    <img src="images/against-proposition.png" alt="Stacked bar chart of CCRB case outcomes by FADO allegation type, 2000-2009. Force complaints have the lowest substantiation rate at 8.8%." />
-                    <figcaption>Case outcomes by FADO allegation type for complaints received 2000–2009. Force allegations have the lowest substantiation rate (8.8%), with 91.2% of outcomes grouped as exonerated, unfounded, or unsubstantiated.</figcaption>
-                </figure>
+                <div class="reveal">
+                    <input class="reveal-toggle" type="checkbox" id="for-honest-toggle" />
+                    <label class="reveal-button" for="for-honest-toggle">
+                        <span class="show-honest">Show what we left out</span>
+                        <span class="show-persuasive">Back to the persuasive version</span>
+                    </label>
+                    <figure class="persuasive-chart">
+                        <img src="images/viz2.png" alt="Line chart of the percent of allegations substantiated by year received, 2007 to 2019, rising from 14.2% to 35.1% in 2015." />
+                        <figcaption><strong>Figure 1a:</strong> Percent of allegations substantiated by the year the complaint was received, 2007–2019. The rate rose from 14% in 2007 to a peak of 35% in 2015 and has stayed between roughly 25% and 32% since.</figcaption>
+                    </figure>
+                    <figure class="honest-chart">
+                        <img src="images/for-proposition-honest.png" alt="Line chart of the percent of allegations substantiated from 1985 through 2019 with a y-axis starting at zero; incomplete 2020 data is omitted." />
+                        <figcaption><strong>Figure 1b:</strong> The same rate across the completed 1985–2019 record, with the y-axis starting at zero. The 2007 low sits inside a longer history, and earlier years were already higher. The incomplete 2020 data is omitted because many cases had not yet closed.</figcaption>
+                    </figure>
+                </div>
 
                 <p>Design Decisions and Rationale:</p>
 
                 <ul>
                     <li>
-                        <strong>Decision 1: Grouping "Exonerated," "Unfounded," and "Unsubstantiated" into a Single Monolithic Baseline</strong>
+                        <strong>Decision 1: Starting the window at the 2007 low</strong>
                         <ul>
-                            <li>Deception Score: -1.0 (Moderately Deceptive)</li>
-                            <li>Rationale: I combined three distinct investigative outcomes (Exonerated, meaning lawful action; Unfounded, meaning the act did not occur; and Unsubstantiated, meaning insufficient evidence) into a single gray bar labeled "Exonerated, Unfounded, or Unsubstantiated." While showing the separate categories was considered, splitting them up diluted the visual impact. Grouping them created a massive gray baseline reaching 91.2%, effectively erasing the nuance of officers who followed protocol and making systemic impunity look virtually universal.</li>
+                            <li>Deception Score: -1.5</li>
+                            <li>Rationale: The substantiation rate was 14% in 2007, the lowest point in our window, and it reached about 35% in 2015. We left out earlier years, when rates were already higher—about 27–31% in much of 1995–2004, with dips to 17% in 1999 and 22% in 2001. This means part of the rise is a recovery from a low point rather than a new trend. Starting at the low makes the improvement look larger and supports the claim that the system is steadily getting stronger. We considered showing the full history, but it weakened that claim.</li>
                         </ul>
                     </li>
                     <li>
-                        <strong>Decision 2: Temporal Bounding to the 2000–2009 Window</strong>
+                        <strong>Decision 2: Truncated y-axis with a filled area</strong>
                         <ul>
-                            <li>Deception Score: -0.5 (Slightly Deceptive)</li>
-                            <li>Rationale: I narrowed the timeframe to complaints from 2000 to 2009 instead of showing the full 1985 to 2020 record. This makes the graphic much more persuasive against the proposition because the substantiation rate drops from a multi-decade average of 12.8% down to 8.8%, highlighting systemic failure during a decade of heavy policing. Using the whole timeline was considered, but other decades had higher rates that softened the critique. Sticking to 2000 to 2009 hit the lowest possible number while still being technically accurate under the subtitle.</li>
+                            <li>Deception Score: -1.0</li>
+                            <li>Rationale: The y-axis runs from 10% to 40% instead of starting at zero, and the shaded area under the line exaggerates the size of the rise. We kept the zoom moderate so the truncation is not immediately obvious. A zero-based axis was the alternative, but it flattens the trend and makes the change look small.</li>
                         </ul>
                     </li>
                     <li>
-                        <strong>Decision 3: Asymmetric Color Hierarchy and Saliency Encoding</strong>
+                        <strong>Decision 3: Headline and orange highlights</strong>
                         <ul>
-                            <li>Deception Score: 0.5 (Slightly Earnest)</li>
-                            <li>Rationale: I used a bright, attention-grabbing red for "Substantiated" cases and a dull light gray for the others. This draws the eye straight to the red bars, making it easy to see how tiny they look next to the huge block of gray. A normal neutral color palette was tested, but it made both outcomes look equally important. The red-and-gray contrast instantly frames substantiation as the missing, broken piece of the discipline system.</li>
+                            <li>Deception Score: -1.0</li>
+                            <li>Rationale: The title, “Findings Against Officers More Than Doubled Since 2007,” and the orange callouts on 2007 and 2015 draw the eye to the two most favorable points and away from the drop after 2015. The title also says “findings against officers,” while the y-axis measures the share of allegations substantiated, which is a different thing. The claim is true (14% to 31–35%), but it is worded to sound stronger than the chart shows.</li>
                         </ul>
                     </li>
                     <li>
-                        <strong>Decision 4: Normative Framing in Title and Subtitle Typography</strong>
+                        <strong>Decision 4: Correct calculation, labeled axes, and a cited source</strong>
                         <ul>
-                            <li>Deception Score: -1.0 (Moderately Deceptive)</li>
-                            <li>Rationale: Instead of using a plain label like "Distribution of Allegation Outcomes," I used a loaded headline in dark red: "Where Complaints Matter Most, Findings Are Rarest: Force Allegations Expose a System Lacking Accountability." This tells people how to read the chart before they even look at the numbers, framing low substantiation as proof of a broken system rather than just unproven or baseless complaints. A neutral title was considered, but it didn't push the persuasive message needed for the anti-proposition goal.</li>
+                            <li>Deception Score: +1.0</li>
+                            <li>Rationale: Each point is the share of allegations substantiated, grouped by the year the complaint was received. The axes are labeled and the source is cited, so a careful reader can see what is plotted. This is the most earnest choice, but it does not offset the caveats we left off the chart: the latest year is incomplete because of unclosed cases, and the data only covers officers still on the force.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>Data transformation</h4>
+                <p>We collapsed the allegation-level file into one row per complaint with a groupby on <code>complaint_id</code> and a calculated flag, “any substantiated allegation.” Overall, 24.9% of allegations are substantiated, but 32.0% of complaints contain at least one substantiated allegation, a 7-point swing from the denominator alone. Viz 2 uses the allegation-level column.</p>
+
+                <table style="border-collapse: collapse; margin-bottom: 1em;" border="1" cellpadding="6">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Allegation-level</th>
+                            <th>Complaint-level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2007</td><td>14.2%</td><td>17.5%</td></tr>
+                        <tr><td>2008</td><td>15.6%</td><td>18.7%</td></tr>
+                        <tr><td>2009</td><td>18.6%</td><td>23.0%</td></tr>
+                        <tr><td>2010</td><td>17.5%</td><td>21.0%</td></tr>
+                        <tr><td>2011</td><td>23.1%</td><td>29.7%</td></tr>
+                        <tr><td>2012</td><td>25.3%</td><td>32.3%</td></tr>
+                        <tr><td>2013</td><td>25.8%</td><td>34.2%</td></tr>
+                        <tr><td>2014</td><td>27.8%</td><td>38.2%</td></tr>
+                        <tr><td>2015</td><td>35.1%</td><td>49.9%</td></tr>
+                        <tr><td>2016</td><td>31.9%</td><td>43.5%</td></tr>
+                        <tr><td>2017</td><td>25.3%</td><td>40.1%</td></tr>
+                        <tr><td>2018</td><td>28.4%</td><td>46.8%</td></tr>
+                        <tr><td>2019</td><td>30.9%</td><td>54.1%</td></tr>
+                        <tr><td><strong>All years</strong></td><td><strong>24.9%</strong></td><td><strong>32.0%</strong></td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h3>AGAINST the Proposition</h3>
+
+                <div class="reveal">
+                    <input class="reveal-toggle" type="checkbox" id="against-honest-toggle" />
+                    <label class="reveal-button" for="against-honest-toggle">
+                        <span class="show-honest">Show what we left out</span>
+                        <span class="show-persuasive">Back to the persuasive version</span>
+                    </label>
+                    <figure class="persuasive-chart">
+                        <img src="images/against-proposition.png" alt="Grouped horizontal bar chart of case outcomes by FADO allegation type, 2000 to 2009. Force complaints have the lowest substantiation rate at 8.8%." />
+                        <figcaption><strong>Figure 2a:</strong> Case outcomes by FADO allegation type for complaints received 2000–2009. Force allegations have the lowest substantiation rate (8.8%), with 91.2% of outcomes grouped as exonerated or unsubstantiated.</figcaption>
+                    </figure>
+                    <figure class="honest-chart">
+                        <img src="images/against-proposition-honest.png" alt="Stacked bar chart of outcomes by FADO allegation type across 1985 to 2020 with substantiated, exonerated, and unsubstantiated shown separately." />
+                        <figcaption><strong>Figure 2b:</strong> The same comparison with the full 1985–2020 range and each outcome shown separately. The ProPublica data excludes allegations classified as unfounded, so that outcome cannot be shown.</figcaption>
+                    </figure>
+                </div>
+
+                <h4>How the honest comparison was calculated</h4>
+                <p>Figure 2b uses the allegation-level ProPublica CCRB file, where each row represents one allegation. We grouped the detailed <code>board_disposition</code> values into three outcomes while keeping <code>Exonerated</code> and <code>Unsubstantiated</code> separate:</p>
+
+                <ol>
+                    <li>Every disposition beginning with “Substantiated” was grouped as <strong>Substantiated</strong>.</li>
+                    <li><strong>Exonerated</strong> remained separate; it means the reported conduct occurred but was allowed under NYPD rules.</li>
+                    <li><strong>Unsubstantiated</strong> remained separate; it means there was insufficient evidence to determine whether misconduct occurred.</li>
+                    <li>The allegations were grouped by <code>fado_type</code>, and each outcome count was divided by the total number of allegations in that FADO category.</li>
+                </ol>
+
+                <pre><code>outcome percentage = allegations with that outcome
+                   ÷ all allegations of that FADO type
+                   × 100</code></pre>
+
+                <table style="border-collapse: collapse; margin-bottom: 1em;" border="1" cellpadding="6">
+                    <thead>
+                        <tr>
+                            <th>FADO type</th>
+                            <th>Total allegations</th>
+                            <th>Substantiated</th>
+                            <th>Exonerated</th>
+                            <th>Unsubstantiated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Abuse of Authority</td><td>20,292</td><td>30.4%</td><td>29.0%</td><td>40.6%</td></tr>
+                        <tr><td>Discourtesy</td><td>4,677</td><td>21.9%</td><td>5.0%</td><td>73.1%</td></tr>
+                        <tr><td>Offensive Language</td><td>753</td><td>16.9%</td><td>0.3%</td><td>82.9%</td></tr>
+                        <tr><td>Force</td><td>7,636</td><td>12.8%</td><td>45.8%</td><td>41.4%</td></tr>
+                    </tbody>
+                </table>
+
+                <p>The 0.3% Exonerated share for Offensive Language appears as a very small blue segment, but its label is omitted because the segment is too narrow to hold readable text. This chart uses the full 1985–2020 file; 2020 is incomplete, so the values should not be interpreted as a complete record of that year.</p>
+
+                <p>Data source: a <a href="https://github.com/Shafiq-Kyazze/NYPD-Complaints/blob/master/allegations.csv">public copy of ProPublica’s allegations CSV</a>, associated with <a href="https://projects.propublica.org/nypd-ccrb/">ProPublica’s NYPD CCRB project</a>. ProPublica’s release excludes allegations classified as unfounded and includes only active-duty officers with at least one substantiated allegation.</p>
+
+                <p>Design Decisions and Rationale:</p>
+
+                <ul>
+                    <li>
+                        <strong>Decision 1: Grouping “Exonerated” and “Unsubstantiated” into one gray bar</strong>
+                        <ul>
+                            <li>Deception Score: -1.5</li>
+                            <li>Rationale: We merged two different outcomes into a single gray bar labeled “Exonerated or Unsubstantiated”: “Exonerated” means the conduct happened but was allowed under NYPD rules, and “Unsubstantiated” means there was not enough evidence. This makes every non-substantiated case look like a failure to hold officers accountable, even though many of those cases ended with a finding that the officer followed the rules. We considered showing the outcomes separately, but that split the non-substantiated share into two smaller bars and weakened the visual impact. The merged bar reaches 91.2% for Force, so impunity looks nearly universal.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Decision 2: Limiting the window to 2000–2009</strong>
+                        <ul>
+                            <li>Deception Score: -1.0</li>
+                            <li>Rationale: We filtered to complaints received from 2000 to 2009 instead of showing the full 1985–2020 record. In this window the Force substantiation rate is 8.8%, compared with 12.8% across the full record. We chose it because the full record includes years with higher substantiation rates, which would soften the argument. The subtitle states the window, so it is defensible, but the chart does not explain why these years were picked. The alternative was the full timeline, but the lower rate and sharper contrast made 2000–2009 more persuasive.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Decision 3: Red versus gray color encoding</strong>
+                        <ul>
+                            <li>Deception Score: -0.5</li>
+                            <li>Rationale: We colored “Substantiated” in saturated red and the other outcomes in muted gray. This draws the eye to the short red bars next to the long gray ones, so low substantiation looks like the thing that is wrong. A neutral palette, such as blue versus orange, would have treated both outcomes as equally normal. Using color to emphasize a category is a standard technique, but here it also signals that substantiation is the “correct” outcome, so we scored it slightly deceptive.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Decision 4: Editorialized title</strong>
+                        <ul>
+                            <li>Deception Score: -1.0</li>
+                            <li>Rationale: Instead of a descriptive title such as “Distribution of Allegation Outcomes by FADO Category,” we used “Where Complaints Matter Most, Findings Are Rarest: Force Allegations Expose a System Lacking Accountability.” It tells readers that a low substantiation rate is proof of a broken system before they read any numbers, even though a low rate could also reflect complaints that could not be proven. A neutral title would not have supported the anti-proposition stance.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Decision 5: Not disclosing the dataset’s limits</strong>
+                        <ul>
+                            <li>Deception Score: -2.0</li>
+                            <li>Rationale: ProPublica’s file only includes active-duty officers with at least one substantiated allegation, and it excludes allegations classified as unfounded. The persuasive chart does not say this, even though it means complaints against officers who left, or who were never found to have committed misconduct, are missing. We consider this the most deceptive choice, because it limits what the data can say about the whole system, and the chart presents its rates as if they describe all complaints.</li>
                         </ul>
                     </li>
                 </ul>
@@ -285,9 +488,12 @@
             <section>
                 <h2>Final Reflection</h2>
 
-                <p>[WRITE FINAL REFLECTION PARAGRAPHS HERE.]</p>
+                <p>The biggest lesson of this project was how easily we could make data look misleading without changing any of the numbers. Every choice we made, such as which years to include, how to group outcomes, what to highlight, and how to word the title, seemed reasonable on its own. The effect became clear when we put our two charts side by side. Our Pro chart starts in 2007, a low year, to show a steady rise, while our Anti chart uses 2000–2009 to show low substantiation rates. Each window leaves out the data that would weaken its own argument, and the same dataset supports both stories. We also drafted charts on complaint-level outcomes and on the growth in complaint volume, but we cut them. The harder part wasn’t making the charts, but deciding when a design choice stopped being persuasive and became misleading, especially for grouping exonerated cases with unsubstantiated ones, because it hides a real difference in what those outcomes mean.</p>
+
+                <p>We also found that the dataset’s limits affect even accurate charts. ProPublica’s file only includes active-duty officers with at least one substantiated allegation, and it excludes allegations classified as unfounded. Complaints against officers who left or were never found to have committed misconduct are missing, so a chart with correct numbers and a labeled axis still cannot show the full picture of civilian complaints. Leaving this out of our charts made them more persuasive, and it is the choice we consider most deceptive. It was also the easiest to overlook, because it comes from the data rather than from any decision about how to draw the chart. The “Show what we left out” buttons are our way of making that visible: each one shows the same records with the omitted years and outcomes restored.</p>
+
+                <p>We think ethical visualization comes down to whether a chart gives readers enough information to understand what the data actually shows. Choosing colors, titles, and time windows to make a point is acceptable persuasion, as long as those choices don’t hide context that would change a reader’s conclusion. Persuasion becomes deception when it makes a claim the data does not support, for example by presenting a partial dataset as the whole system or by presenting a choice of window as a trend. There isn’t always a clear line, but a useful test is to ask what we are leaving out and whether including it would change how readers interpret the chart.</p>
             </section>
         </main>
-    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"c822b88e119346678db149ed7b7721c9","r":1,"spa":2}' crossorigin="anonymous"></script>
-</body>
+    </body>
 </html>
